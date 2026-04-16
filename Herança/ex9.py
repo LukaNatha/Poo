@@ -15,9 +15,9 @@ class Eletrico:
     bateria: int
     
     def carregar(self):
-        return f"Carregando bateria de {self.bateria}Ah" #fiqui em duvida da medida e pesquisei e coloquei amperes por hora
+        return f"Carregando bateria de {self.bateria}Ah" 
     def exibir_info(self):
-        return f"Bateria: {self.bateria} Ah"
+        return f"Bateria: {self.bateria} Ah" 
 
 @dataclass
 class Combustao:
