@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 @dataclass
 class Animal:
-    grupo: str
+    grupo: str = ""
 
 @dataclass
 class Cachorro(Animal):
-    grupo = "mamífero"
+    grupo: str = "mamífero"
