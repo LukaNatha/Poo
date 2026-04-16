@@ -30,6 +30,3 @@ class CarroEletrico(Motor, Eletrico):
 class CarroHibrido(Motor, Eletrico, Combustao):
     def ligar(self):
         return f"{self.ligar_motor()}, {self.carregar()} e {self.abastecer()}"
-    
-    
-    
