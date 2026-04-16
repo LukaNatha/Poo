@@ -1,12 +1,14 @@
 class Nadador:
     def mover(self):
-        print("Nadando")
+        return "Nadar"
 
 class Corredor:
     def mover(self):
-        print("Correndo")
+        return "Correr"
 
 class Triatleta(Nadador, Corredor):
     def mover(self):
-        Nadador.mover(self)
-        Corredor.mover(self)
+        return f"{Nadador.mover(self)} e {Corredor.mover(self)}"
+
+t = Triatleta()
+print(t.mover())
