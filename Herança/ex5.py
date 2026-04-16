@@ -13,14 +13,16 @@ class Gerente(Funcionario):
     bonus: float = 0.0
     
     def exibir_dados(self):
-        return f"Nome: {self.nome}, Salário: {self.salario} e Bônus: {self.bonus}"
+        base = super().exibir_dados()
+        return f"{base} e Bônus: {self.bonus}"
 
 @dataclass
 class Desenvolvedor(Funcionario):
     linguagem: str = ""
     
     def exibir_dados(self):
-        return f"Nome: {self.nome}, Salário: {self.salario} e Linguagem: {self.linguagem}"
+        base = super().exibir_dados()
+        return f"{base} e Linguagem: {self.linguagem}"
 
 g = Gerente("José", 5000, 700)
 d = Desenvolvedor("Lucca", 3500, "Python")
