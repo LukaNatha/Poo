@@ -1,8 +1,10 @@
 from dataclasses import dataclass
+
 @dataclass
 class Animal:
     grupo: str = ""
 
 @dataclass
 class Cachorro(Animal):
-    grupo: str = "mamífero"
+    def __init__(self):
+        super().__init__("mamífero")
