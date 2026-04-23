@@ -15,6 +15,6 @@ class Gato(Animal):
     def emitir_som(self):
         super().emitir_som()
         return "Miau"
-animais = [Animal(Cachorro, Gato)]
-for animal in animais:
-    print(animal.emitir_som(Gato, Cachorro))
+Animal = [Cachorro(), Gato()]
+for animais in Animal:
+    print(animais.emitir_som())
