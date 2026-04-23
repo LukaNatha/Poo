@@ -8,14 +8,13 @@ class Animal:
 @dataclass
 class Cachorro(Animal):
     def emitir_som(self):
+        super().emitir_som()
         return "Au Au"
-    
+
 @dataclass
 class Gato(Animal):
     def emitir_som(self):
+        super().emitir_som()
         return "Miau"
 
-animais = [Cachorro(), Gato(), Animal()]
-
-for animal in animais:
-    print(animal.emitir_som())
+animais: list[Animal] = [Cachorro("Rex"), Gato]
