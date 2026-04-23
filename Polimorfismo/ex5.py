@@ -33,5 +33,5 @@ class Triangulo(FormaGeometria):
 formas = [Circulo(3), Retangulo(4, 5), Triangulo(6, 2)]
 
 for forma in formas:
-    print(forma.calcular_area())
+    print(f"{forma.calcular_area():.2f}")
     
