@@ -1,14 +1,20 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
 
-@dataclass
-class DispostivoEletronico(ABC):
+class Controlavel(ABC):
     @abstractmethod
-    def ligar(self):
-        pass
-    @abstractmethod
-    def desligar(self):
+    def mover(self):
         pass
 
-@dataclass
-class Carregavel(ABC):
+class Jogador(Controlavel):
+    def mover(self):
+        print("Jogador se movendo")
+
+class Volante(Controlavel):
+    def mover(self):
+        print("Volante girando")
+
+meu_jogador = Jogador()
+meu_volante = Volante()
+
+meu_jogador.mover()
+meu_volante.mover()
