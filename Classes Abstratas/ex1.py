@@ -11,7 +11,7 @@ class Jogador(Controlavel):
 
 class Volante(Controlavel):
     def mover(self):
-        print("Volante girando")
+        print("Volante Chutando")
 
 meu_jogador = Jogador()
 meu_volante = Volante()
