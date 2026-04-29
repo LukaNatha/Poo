@@ -1,6 +1,6 @@
 import random
 
-Loteria = random.sample(range(1, 41), 40)
+Loteria = random.sample(range(1, 41), 25)
 for numero in Loteria:
     print(f"Número sorteado: {numero}")
 
