@@ -14,5 +14,6 @@ while True:
 
 print("Relatório:")
 
-for ano in sorted(contagem):
-    print("Data de Nascimento:", ano, "-", "Pessoas:", contagem[ano])
+for ano in contagem:
+    quantidade = contagem[ano]
+    print("Ano", ano, ":", quantidade, "pessoa(s)")
