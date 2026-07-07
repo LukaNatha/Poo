@@ -491,8 +491,3 @@ class BancoApp:
 
     def exibir_dados(self, conta):
         messagebox.showinfo("Dados da Conta", conta.exibir_dados())
-
-
-janela = tk.Tk()
-app = BancoApp(janela)
-janela.mainloop()
