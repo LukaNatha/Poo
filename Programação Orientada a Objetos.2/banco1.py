@@ -3,24 +3,24 @@ from tkinter import messagebox, simpledialog
 from ContaBancaria import Cliente, ContaBancaria
 
 class BancoApp:
-def init(self, janela):
-self.janela = janela
-self.janela.title("Sistema Bancário - POO em Python")
-self.janela.geometry("850x400")
+    def __init__(self, janela):
+        self.janela = janela
+        self.janela.title("Sistema Bancário - POO em Python")
+        self.janela.geometry("850x400")
 
-cliente1  = Cliente("Ana", "004.045", "Rua do Flamengo", "678", "Centro do bairro", "Cidade porco")  
-    cliente2 = Cliente("Arthur", "023.450", "x", "47", "y", "g")          
+        cliente1 = Cliente("Ana", "004.045", "Rua do Flamengo", "678", "Centro do bairro", "Cidade porco")  
+        cliente2 = Cliente("Arthur", "023.450", "x", "47", "y", "g")          
 
-    self.contas = [  
-        ContaBancaria("João", 1001, 500),  
-        ContaBancaria("Maria", 1002, 1000),  
-        ContaBancaria("Pedro", 1003, 300),  
-        ContaBancaria("Esther", 1004, 20)  
-    ]  
+        self.contas = [  
+            ContaBancaria("João", 1001, 500),  
+            ContaBancaria("Maria", 1002, 1000),  
+            ContaBancaria("Pedro", 1003, 300),  
+            ContaBancaria("Esther", 1004, 20)  
+        ]  
 
     # messagebox.showinfo("Sucesso", "Depósito realizado.")  
 
-    self.criar_interface()  
+        self.criar_interface()  
 
 def criar_interface(self):  
     titulo = tk.Label(  
