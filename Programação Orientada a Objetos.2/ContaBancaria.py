@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 
+
+
 class Endereco:
     def __init__(self, rua, numero, bairro, cidade):
         self.__rua = rua
@@ -92,6 +94,9 @@ class ContaBancaria:
                 return False
         else:
             return False
+    
+    def get_tipo_conta(self):
+        return "Conta Bancária"
 
     def exibir_dados(self):
         nome = self.__titular.get_nome()
@@ -102,27 +107,88 @@ class ContaBancaria:
         
         return f"Nome do Cliente: {nome}\nCPF: {cpf}\nNome da Rua: {rua}\nNome do Bairro: {bairro}\nNúmero da Conta: {self.__numero}\nSaldo: R$ {self.__saldo:.2f}"
 
+
 class ContaCorrente(ContaBancaria):
-    def __init__(self, cliente, numero, saldo_inicial, limite, tarifa_mensal):
+
+    def __init__(self, cliente, numero, saldo_inicial=0, limite=500, tarifa_mensal=15):
         super().__init__(cliente, numero, saldo_inicial)
         self.__limite = limite
         self.__tarifa_mensal = tarifa_mensal
+
+    def sacar(self, valor):
+        if valor > 0:
+            if self.get_saldo() + self.__limite >= valor:
+                self._ContaBancaria__saldo = self.get_saldo() - valor
+                return True
+        return False
+
+    def cobrar_tarifa(self):
+        return self.sacar(self.__tarifa_mensal)
+
+    def exibir_dados(self):
+        return super().exibir_dados() + f"\nLimite: R$ {self.__limite:.2f}"
+
+    def get_tipo_conta(self):
+        return "Conta Corrente"
+        
+class ContaPoupanca(ContaBancaria):
+
+    def __init__(self, cliente, numero, saldo_inicial=0, taxa_rendimento=0.01):
+        super().__init__(cliente, numero, saldo_inicial)
+        self.__taxa_rendimento = taxa_rendimento
+
+    def render_juros(self):
+        juros = self.get_saldo() * self.__taxa_rendimento
+        self._ContaBancaria__saldo += juros
+
+    def exibir_dados(self):
+        return super().exibir_dados() + f"\nTaxa de rendimento: {self.__taxa_rendimento * 100}%"
+
+    def get_tipo_conta(self):
+        return "Conta Poupança"
     
+class ContaSalario(ContaBancaria):
+
+    def __init__(self, cliente, numero, saldo_inicial=0,
+                 empresa="", limite_saques=3):
+
+        super().__init__(cliente, numero, saldo_inicial)
+
+        self.__empresa = empresa
+        self.__saques_realizados = 0
+        self.__limite_saques = limite_saques
+
+    def receber_salario(self, valor):
+        return super().depositar(valor)
+
+    def depositar(self, valor):
+        return False
+
+    def sacar(self, valor):
+        if self.__saques_realizados < self.__limite_saques:
+            if super().sacar(valor):
+                self.__saques_realizados += 1
+                return True
+        return False
+
+    def transferir(self, valor, conta_destino):
+        return False
+
+    def exibir_dados(self):
+        return super().exibir_dados() + \
+               f"\nEmpresa: {self.__empresa}" + \
+               f"\nSaques: {self.__saques_realizados}/{self.__limite_saques}"
+
+    def get_tipo_conta(self):
+        return "Conta Salário"
     
-    
-
-
-
-
-
-
 class BancoApp:
     def __init__(self, janela):
         self.janela = janela
         self.janela.title("Sistema Bancário - POO em Python")
         self.janela.geometry("850x400")
 
-        cliente1  = Cliente("Ana", "004.045")
+        cliente1 = Cliente("Ana", "004.045")
         cliente2 = Cliente("Arthur", "023.450")        
 
         self.contas = [
@@ -298,14 +364,14 @@ class BancoApp:
     def render_juros(self, conta):
         if(conta.get_tipo_conta() == "Conta Poupança"):
             conta.render_juros()
-            messagebox.showerror("Sucesso", "Rendimento efetuado.")
+            messagebox.showinfo("Sucesso", "Rendimento efetuado.")
         else:
             messagebox.showerror("Erro", "Conta não disponibiliza rendimento")
     
     def cobrar_taxa(self, conta):
         if(conta.get_tipo_conta() == "Conta Corrente"):
             conta.cobrar_taxa()
-            messagebox.showerror("Sucesso", "Rendimento efetuado.")
+            messagebox.showinfo("Sucesso", "Rendimento efetuado.")
         else:
             messagebox.showerror("Erro", "Cobrança invalida para essa conta")
 
