@@ -197,4 +197,4 @@ def cobrar_taxa(self, conta):
 
 janela = tk.Tk()
 app = BancoApp(janela)
-janela.mainloop() aparecem duas janelas seguidas nesse código, uma com os botões e uma sem o botões que aparece primeiro, oque pode ser
+janela.mainloop()
