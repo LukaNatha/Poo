@@ -10,8 +10,8 @@ class BancoApp:
 
         cliente1 = Cliente("Ana", "004.045", "Rua do Flamengo", "678", "Centro do bairro", "Cidade porco")  
         cliente2 = Cliente("Arthur", "023.450", "Rua Estreita", "417", "Bairro Café Morno", "Cidade Dos brilhos")
-        cliente3 = Cliente("João", "123.456", "Rua Américas", "423", "Bairro Baixinho", "Cidade Corintiana")
-        cliente4 = Cliente("Maria", "789.012", "Rua das Palmeiras", "561", "Bairro Verde Escuro", "Cidade Cabo loso")  
+        cliente3 = Cliente("Pedro", "123.456", "Rua Américas", "423", "Bairro Baixinho", "Cidade Corintiana")
+        cliente4 = Cliente("Clara", "789.012", "Rua das Palmeiras", "561", "Bairro Verde Escuro", "Cidade Cabo loso")  
 
         self.contas = [
         ContaCorrente(cliente1, 1001, 500, 500, 15),
@@ -100,12 +100,20 @@ class BancoApp:
 
             btn_dados = tk.Button(
                 frame,
-                text="Exibir Dados",
+                text="Dados da Conta",
                 width=15,
                 command=lambda c=conta: self.exibir_dados(c)
             )
             # btn_dados.config(state="disabled")
             btn_dados.pack(pady=2)
+
+            btn_dados_cliente = tk.Button(
+                frame,
+                text="Dados do Cliente",
+                width=15,
+                command=lambda c=conta: self.dados_cliente(c)
+            )
+            btn_dados_cliente.pack(pady=2)
 
             btn_rendimento = tk.Button(
                 frame,
@@ -182,6 +190,9 @@ class BancoApp:
 
     def exibir_dados(self, conta):
         messagebox.showinfo("Dados da Conta", conta.exibir_dados())
+
+    def dados_cliente(self, conta):
+        messagebox.showinfo("Dados do Cliente", conta.get_titular().exibir_dados())
 
     def render_juros(self, conta):
         if(conta.get_tipo_conta() == "Conta Poupança"):
